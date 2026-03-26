@@ -61,15 +61,3 @@ person.h / person.cpp: Defines the base class for personal details.
 
 
 student.h / student.cpp: Defines the student class with academic data and courses.
-
-🖥️ How to Run
-Clone the repository.
-
-Compile using a C++ compiler:
-
-Bash
-g++ main.cpp person.cpp student.cpp -o student_system
-Run the executable:
-
-Bash
-./student_system
