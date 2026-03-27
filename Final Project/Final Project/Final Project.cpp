@@ -7,14 +7,33 @@
 #include <set>
 #include<algorithm>
 #include<cctype>
+#include <fstream>
+using namespace std;
 
-
+void save_to_file( Student std) {
+    ofstream outFile("Studenst_data.txt",std ::ios ::app);
+    if (!outFile) {
+        cout << "Error opening file for saving!" << endl;
+        return;
+    }
+    outFile
+            << std.get_name() << "|"
+            << std.get_ID() << "|"
+            << std.get_gpa() << "|";
+    std.Save_courses_to_file();
+    set<string> studentCourses = std.Save_courses_to_file();
+    for (const string& course : studentCourses) {outFile << course << " ";}
+    outFile <<endl <<endl;
+    outFile.close();
+    cout << "Data saved to file successfully." << endl;
+}
 
 int main()
 {
     vector <Student> db;
     map <int, string> options;
     map <int, string> sorted_students;
+    
 
     options = {
         {1,"Add Student"},
@@ -60,14 +79,14 @@ int main()
                     Student std(name, gpa, id_counter);
                     id_counter++;
                     db.push_back(std);
+
                     cout << "Student added!" << endl;
+                    save_to_file(std);
                     break;
                 }
-                else 
-                {
-                    cout << "Invalid gpa try again!" << endl;
-                    break;
-                }
+                cout << "Invalid gpa try again!" << endl;
+                break;
+               
                 
             }
 
@@ -117,7 +136,7 @@ int main()
                         if (db[i].get_gpa() == gpa)
                         {
                             db[i].Display_student();
-                            break;
+                            
                         }
                         
                     }
@@ -161,6 +180,7 @@ int main()
                     {
                         db[i].set_Course(course);
                         cout << "Course added! " << endl;
+                        save_to_file(db[i]);
                         break;
                     }
                     

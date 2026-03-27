@@ -1,5 +1,7 @@
 #include "student.h"
 #include<iostream>
+#include <fstream>
+
 
 Student::Student(string n, float gpa, int ID) {
 	GPA = gpa;
@@ -31,6 +33,13 @@ void Student::Display_student() {
 	cout << "Name:  " << this->get_name() << endl;;
 	cout << "Gpa:  " << this->get_gpa() << endl;;
 	cout << "ID:  " << this->get_ID() << endl;;
+	
+
+}
+set<string> Student::Save_courses_to_file() {
+	if(courses.size()>0){ return courses; }
+	courses.insert("none");
+	return courses;
 	
 
 }

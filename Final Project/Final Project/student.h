@@ -3,6 +3,8 @@
 #define STUDENT_H_
 #include "person.h"
 #include <set>
+#include <string>
+using namespace std;
 class Student :public Person
 {
 private:
@@ -18,6 +20,8 @@ public:
 	int get_ID();
 	void get_Courses();
 	void Display_student();
+	set<string> Save_courses_to_file();
+	
 };
 #endif // !1
 
